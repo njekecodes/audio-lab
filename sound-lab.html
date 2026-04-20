@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0">
+	<title>Njeke's Music Player</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+	
+</head>
+<body>
+	<div class="container">
+		<div class='player'>
+			<!-- Display song image art -->
+			<div class='song-art'>
+				
+					<img src="./art/musical-note.png" class='cover-art'>
+			</div>
+			<!-- Song details : title, artist -->
+			<div class='song-info'>
+				<p>Now playing</p>
+				<div class="song-details">
+					<span>
+						<i class="fa-solid fa-music"></i>
+						<span id='songTitle' ></span>
+					</span>
+					<span>
+						<i class="fa-solid fa-user"></i>
+						<span id='songArtist'></span>
+					</span>
+				</div>	
+			</div>
+
+			<!-- Audio elemet -->
+			<div class='audio-controls'>
+				<audio controls id='audioPlayer' >
+					<source src="audios/amapiano.mp3" type="audio/mp3">
+					<source src="audios/house.mp3" type="audio/mp3">
+						<span>Your browser does not support this audio element.</span>
+				</audio>
+			</div>
+			<!-- Custom audio controls -->
+			<div style="width: 100%">
+				<div class="control-btns-container">
+
+					<!-- Play and Pause Controls -->
+					<div class="control-btns-grp">
+						<button role=button class="control-btn" onclick="document.getElementById('audioPlayer').play()"><i class="fa-solid fa-play"></i></button>
+						<button role=button class="control-btn" onclick="document.getElementById('audioPlayer').pause()"><i class="fa-solid fa-pause"></i></button>
+					</div>
+					
+					<!-- Volume controls -->
+					<div class='control-btns-grp'>
+						<button  class="control-btn" onclick="document.getElementById('audioPlayer').volume -= 0.1"><i class='fa-solid fa-minus'></i> </button>
+						<button  class="control-btn" onclick="document.getElementById('audioPlayer').volume += 0.1"><i class='fa-solid fa-plus'></i> </button>
+					</div>
+
+				<!-- Forward and Rewind Controls -->
+					<div class='control-btns-grp'>
+						<button role="button" class="control-btn" onclick="document.getElementById('audioPlayer').currentTime -= 10"><i class='fa-solid fa-angles-left'></i> </button>
+						<button role="button" class="control-btn" onclick="document.getElementById('audioPlayer').currentTime += 10"><i class="fa-solid fa-angles-right"></i></button>
+					</div>
+				</div>
+
+				<!-- Control instructions Scetion-->
+				<div class="controls-instructions">
+					<div class='heading'>
+						<h5 style="color: #B0432C;">Keyboard Controls</h5>
+
+						<p>User the arrow controls on your keyboard : </p>
+					</div>
+					<div class='instructions'>
+						<p>
+							<i class='fa-solid fa-arrow-left'></i>Left: Rewind 10s (-10s)
+						</p>
+						<p>
+							<i class='fa-solid fa-arrow-right'></i>
+							Right: Forward 10s (+10s)
+						</p>
+						<p>
+							<i class='fa-solid fa-arrow-up'></i>
+							Up: Increase Volume (+)
+						</p>
+						<p>
+							<i class='fa-solid fa-arrow-down'></i>
+						Down: Decrease Volume (-)
+					</p>
+					</div>
+				</div>
+
+			</div>
+
+			
+		</div>		
+			
+	</div>
+	
+	<script type="text/javascript">
+		const title = 'Amapiano Mix 2023'
+		const artist = 'Dlala Poxa'
+	
+		// set song information on player
+	document.getElementById('songTitle').textContent = title;
+	document.getElementById('songArtist').textContent = artist;
+
+	const song = document.getElementById("audioPlayer");
+
+	document.addEventListener('keydown', (event) => {
+	
+		switch (event.code) {
+			case'Space':
+				event.preventDefault();
+				if (song.paused) {
+					song.play();
+				} else {
+					song.pause();
+				}
+				break;
+
+			case'ArrowUp':
+				song.volume += 0.1;
+				break;
+
+			case 'ArrowDown':
+				song.volume -= 0.1;
+				break;
+
+			case 'ArrowLeft':
+				song.currentTime -=10;
+				break;
+
+			case 'ArrowRight':
+				song.currentTime +=10;
+				break;
+
+			
+		}
+	});
+	</script>	
+</body>
+</html>
